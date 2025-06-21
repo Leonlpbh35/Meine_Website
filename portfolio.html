@@ -1,0 +1,72 @@
+Button-Klick reagiert und das Ergebnis anzeigt.
+
+Hier ist dein HTML mit einem kleinen JavaScript-Teil ergänzt:
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rechner</title>
+</head>
+<body>
+    <header>
+        <h1>Willkommen zu meinem Portfolio</h1>
+    </header>
+    <div>
+        <p>Mein Rechner in meiner Website</p>
+    </div>
+    <div>
+        <p style="font-size: 20px;">Erste Zahl zum Rechnen:</p>
+        <input type="number" id="ErsteZahl">
+        <select id="Rechenoperator">
+            <option value="+">+ (Plus)</option>
+            <option value="-">- (Minus)</option>
+            <option value="/">: (Geteilt)</option>
+            <option value="*">× (Mal)</option>
+        </select>
+        <input type="number" id="ZweiteZahl">
+        <button onclick="rechnen()">=</button>
+        <span id="Ergebnis" style="font-size: 25px;"></span>
+    </div>
+    <div>
+        <a style="font-size: 25px;" href="index.html">Zurück zur vorherigen Seite</a>
+    </div>
+
+    <script>
+        function rechnen() {
+            const zahl1 = parseFloat(document.getElementById("ErsteZahl").value);
+            const zahl2 = parseFloat(document.getElementById("ZweiteZahl").value);
+            const operator = document.getElementById("Rechenoperator").value;
+            let ergebnis;
+
+            if (isNaN(zahl1) || isNaN(zahl2)) {
+                ergebnis = "Bitte gültige Zahlen eingeben.";
+            } else {
+                switch (operator) {
+                    case "+":
+                        ergebnis = zahl1 + zahl2;
+                        break;
+                    case "-":
+                        ergebnis = zahl1 - zahl2;
+                        break;
+                    case "*":
+                        ergebnis = zahl1 * zahl2;
+                        break;
+                    case "/":
+                        if (zahl2 === 0) {
+                            ergebnis = "Division durch 0 nicht erlaubt!";
+                        } else {
+                            ergebnis = zahl1 / zahl2;
+                        }
+                        break;
+                    default:
+                        ergebnis = "Ungültiger Operator";
+                }
+            }
+
+            document.getElementById("Ergebnis").textContent = ergebnis;
+        }
+    </script>
+</body>
+</html>
